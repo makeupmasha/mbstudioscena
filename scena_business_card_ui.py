@@ -18,6 +18,9 @@ def render_card_editor(db_path, app_dir, locale):
 
     key = 'business_card_editor'
     source = st.session_state.setdefault(key + '_source', get_card(db_path))
+    if 'brand_name' not in source:
+        source = get_card(db_path)
+        st.session_state[key + '_source'] = source
     revision = st.session_state.get(key + '_revision', 0)
     if st.session_state.pop(key + '_saved', False):
         st.success(t('Визитка сохранена. Страница и скачиваемый контакт обновлены.',
@@ -30,6 +33,12 @@ def render_card_editor(db_path, app_dir, locale):
     values = {}
     with fields:
         with st.form(key + '_' + str(revision)):
+            values['brand_name'] = st.text_input(
+                t('Название бренда или салона', 'Numele brandului sau al salonului', 'Brand or salon name'),
+                value=source['brand_name'], max_chars=80)
+            st.caption(t('Показывается в верхней строке визитки. Имя для сохранения контакта задаётся отдельно.',
+                         'Apare în antetul cărții. Numele contactului se completează separat.',
+                         'Shown in the card header. The contact name is entered separately.'))
             for field, label, limit in [
                 ('first_name', t('Имя', 'Prenume', 'First name'), 60),
                 ('last_name', t('Фамилия', 'Nume', 'Last name'), 80),
