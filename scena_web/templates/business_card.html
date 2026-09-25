@@ -7,9 +7,9 @@
   <meta name="description" content="{{ description }}">
   <meta name="robots" content="noindex, follow">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Sofi Leroux">
+  <meta name="apple-mobile-web-app-title" content="{{ card['brand_name'] }}">
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Sofi Leroux · {{ name }}">
+  <meta property="og:title" content="{{ card['brand_name'] }} · {{ name }}">
   <meta property="og:description" content="{{ description }}">
   <meta property="og:url" content="{{ card_url }}">
   <meta property="og:image" content="{{ public_origin + photo_url if photo_url.startswith('/') else photo_url }}">
@@ -18,15 +18,15 @@
   <link rel="apple-touch-icon" href="/card/assets/icon-192.png">
   <link rel="manifest" href="/card/manifest.webmanifest">
   <link rel="stylesheet" href="/card/style.css">
-  <title>Sofi Leroux · {{ name }}</title>
+  <title>{{ card['brand_name'] }} · {{ name }}</title>
 </head>
 <body data-preview="{{ '1' if preview else '0' }}">
   <main class="page">
     <p class="preview-note" id="preview-note" hidden>Предпросмотр · изменения появятся после сохранения</p>
     <p class="preview-note" id="offline-note" hidden>Нет сети. Показана последняя загруженная визитка.</p>
-    <article class="card" aria-label="Электронная визитка Sofi Leroux">
+    <article class="card" aria-label="Электронная визитка {{ card['brand_name'] }}">
       <header class="brand-row">
-        <a class="brand" href="{{ card['site_url'] or card_url }}" aria-label="Sofi Leroux. SCENA.live — открыть сайт"><span class="brand-badge"><span class="brand-initials">SOFI</span><span class="brand-studio">LEROUX</span></span><img class="brand-logo" src="/card/assets/scena-live.svg" width="126" height="24" alt="SCENA.live"></a>
+        <a class="brand" href="{{ card['site_url'] or card_url }}" aria-label="{{ card['brand_name'] }} . scena.live — открыть сайт" title="{{ card['brand_name'] }} . scena.live"><span class="brand-name">{{ card['brand_name'] }}</span><span class="brand-dot" aria-hidden="true">.</span><span class="brand-platform">scena.live</span></a>
       </header>
       <section class="portrait">
         <img src="{{ photo_url }}" width="704" height="880" alt="{{ name }}" fetchpriority="high">
@@ -56,9 +56,9 @@
     <noscript><p class="noscript">Для QR-кода и передачи ссылки включите JavaScript. Обычные ссылки и скачивание контакта доступны без него.</p></noscript>
   </main>
   <dialog id="share-dialog" aria-labelledby="share-title">
-    <div class="dialog-head"><h2 id="share-title">Визитка Sofi Leroux</h2><button class="close" type="button" data-close aria-label="Закрыть">×</button></div>
+    <div class="dialog-head"><h2 id="share-title">Визитка {{ card['brand_name'] }}</h2><button class="close" type="button" data-close aria-label="Закрыть">×</button></div>
     <p id="share-help">Покажите QR-код или отправьте ссылку.</p>
-    <img class="qr" src="/card/qr.svg" width="232" height="232" alt="QR-код визитки Sofi Leroux">
+    <img class="qr" src="/card/qr.svg" width="232" height="232" alt="QR-код визитки {{ card['brand_name'] }}">
     <label for="card-url">Ссылка на визитку</label><input id="card-url" type="url" value="{{ card_url }}" readonly spellcheck="false">
     <button class="button primary" id="copy-button" type="button">Скопировать ссылку</button>
     <p class="note" id="share-preview" hidden>QR-код ведёт на опубликованную визитку. Чтобы показать новые данные, сначала сохраните их в кабинете.</p>
