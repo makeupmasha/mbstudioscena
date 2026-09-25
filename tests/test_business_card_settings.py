@@ -30,6 +30,21 @@ class CardSettingsTests(unittest.TestCase):
         self.assertEqual(get_card(self.db), saved)
         self.assertEqual(get_settings(self.db)['master_name'], 'На сайте другое имя')
 
+    def test_brand_name_updates_header_without_changing_contact_name(self):
+        original = get_card(self.db)
+        self.assertEqual(original['brand_name'], 'SofiLeroux')
+        changed = save_card(self.db, self.root, {'brand_name': 'Maison Lune'}, expected=original)
+        page = render_card(changed)
+        self.assertIn('<span class="brand-name">Maison Lune</span>', page)
+        self.assertIn('<span class="brand-dot" aria-hidden="true">.</span>', page)
+        self.assertIn('<span class="brand-platform">scena.live</span>', page)
+        self.assertNotIn('src="/card/assets/scena-live.svg"', page)
+        self.assertIn('property="og:title" content="Maison Lune · София Леру"', page)
+        self.assertIn('FN:София Леру'.encode(), vcard(changed))
+        self.assertEqual(get_card(self.db)['brand_name'], 'Maison Lune')
+        with self.assertRaisesRegex(ValueError, 'название бренда'):
+            save_card(self.db, self.root, {'brand_name': ''}, expected=changed)
+
     def test_rejected_and_stale_edits_do_not_change_published_data(self):
         original = get_card(self.db)
         for changes in [{'first_name': ''}, {'site_url': 'javascript:alert(1)'}, {'site_url': 'https://user:pass@example.org'},
