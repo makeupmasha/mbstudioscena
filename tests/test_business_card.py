@@ -34,7 +34,7 @@ class BusinessCardTests(AsyncHTTPTestCase):
         self.assertEqual(response.headers['Location'], '/card/?utm_source=nfc')
         page = self.fetch('/card/')
         self.assertEqual(page.code, 200)
-        self.assertIn('Маша'.encode(), page.body)
+        self.assertIn('<span class="brand-name">SofiLeroux</span>'.encode(), page.body)
         self.assertEqual(page.headers['X-Robots-Tag'], 'noindex, follow')
         self.assertNotIn('immutable', page.headers['Cache-Control'])
 
