@@ -64,11 +64,3 @@ Browser behaviour follows the documented dialog and image-fit APIs:
 [dialog](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal),
 [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/object-fit).
 
-## Publish proposal
-
-After APPROVE: recheck base and all reviewed hashes; commit exactly the reviewed
-files to `moldset-mmc/scenaonline`, main, with message
-`Fix configurable introduction QR and add photo trash`. The existing Vercel
-integration deploys to `https://scenaonline.vercel.app/`. Verify deployment SHA,
-health and read-only owner/public views. No additional photo assignments, QR
-configuration writes, deletions, real orders or messages form part of publication.

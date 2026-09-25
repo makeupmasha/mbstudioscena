@@ -1,7 +1,6 @@
 # Unified photos — review package
 
-Base: `e1c47d29ae4f5b2d57950f9ce4c767be779604ec`, repository
-`moldset-mmc/scenaonline`, branch `main`. Prepared locally; not published.
+Prepared locally; not published.
 
 ## Behavior
 
@@ -41,15 +40,6 @@ This is functional evidence, not a mobile visual/device pass. The available brow
 previously rejected local preview URLs; no alternative browser or tunnel is used.
 Samsung, soft keyboard and live cloud behavior of this new feature are unverified.
 The preview offers widths 320/360/390/412/430/768/1024 and RU/RO/EN for owner review.
-
-## Publication contract
-
-The exact offline preview contains the complete diff and per-file SHA-256 values.
-After approval, recheck the remote base and all hashes, commit the reviewed change
-as `Add unified owner photo library`, and update the existing `main`. Its existing
-Vercel integration deploys to `https://scenaonline.vercel.app/`. Verify that commit,
-deployment readiness, health and read-only catalog views after publication.
-Do not upload, replace or delete the owner's real photos during verification.
 
 Rollback can revert the code without deleting media or resetting profile settings.
 Keep the photo metadata/originals and any additive cover values for recovery.

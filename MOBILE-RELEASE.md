@@ -1,7 +1,5 @@
 # Mobile refinement — prepared for review
 
-Base: `60afda8272865e6eec05d514adaa9f573a08dbb5` in
-`moldset-mmc/scenaonline`, branch `main`.
 Status: local implementation and automated checks complete; publication pending
 approval of the combined mobile preview. The earlier three-file request-card
 preview is superseded by this package.
@@ -54,11 +52,3 @@ browser rejected local preview URLs; no alternate browser or tunnel was used.
 The external source analyzer was rejected by automatic approval review; source
 inspection and project-owned tests were used instead.
 
-## Publication after approval
-
-Review the combined preview, its exact diff and file hashes first. The proposed
-commit is `Refine mobile cabinet navigation and public layouts`. Push that reviewed
-change to the existing `main` only after approval; its Vercel integration publishes
-to `https://scenaonline.vercel.app/`. Recheck the base and diff before the write.
-Verify the resulting deployment and live read-only views afterward. Do not
-describe this local preview as a deployed or device-verified release.
