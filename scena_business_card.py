@@ -16,6 +16,7 @@ from scena_tenant import public_origin, BRAND, is_demo
 CARD_URL = public_origin() + '/card/'
 ROOT = Path(__file__).resolve().parent
 DEFAULT_CARD = {
+    'brand_name': 'SofiLeroux',
     'first_name': 'София',
     'last_name': 'Леру',
     'profession': 'Model & Makeup Artist',
@@ -29,7 +30,7 @@ DEFAULT_CARD = {
     'phone': '',
     'email': '',
 }
-LIMITS = {'first_name': 60, 'last_name': 80, 'profession': 80, 'tagline': 160,
+LIMITS = {'brand_name': 80, 'first_name': 60, 'last_name': 80, 'profession': 80, 'tagline': 160,
           'primary_label': 50, 'phone': 40, 'email': 254, 'photo': 300}
 
 
@@ -56,6 +57,8 @@ def validate_card(values):
             raise ValueError('Проверьте длину полей. Каждое поле должно занимать одну строку.')
     if not card['first_name']:
         raise ValueError('Укажите имя для визитки.')
+    if not card['brand_name']:
+        raise ValueError('Укажите название бренда или салона.')
     if bool(card['primary_label']) != bool(card['primary_url']):
         raise ValueError('Для основной кнопки заполните название и ссылку или очистите оба поля.')
     for key in ('primary_url', 'site_url', 'instagram_url', 'telegram_url'):
